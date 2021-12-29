@@ -14,7 +14,7 @@ function Stories() {
         }))
 
         setSuggestions(suggestions)
-        console.log('suggestions in Stories:', suggestions)
+        //console.log('suggestions in Stories:', suggestions)
     }, [])
 
     return (

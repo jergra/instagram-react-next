@@ -16,12 +16,20 @@ deployed:
 
 
 at deployment:
-- environment variables added at vercel, including 
-    NEXTAUTH_URL=https://instagram-react-next.vercel.app
-- at Google Cloud Console under APIs & Services/Credentials/OAuth 2.0 Client IDS/Web client
-    Authorized Javascript origins:
-    add https://instagram-react-next.vercel.app
-    Authorized redirect URIs:
-    add https://instagram-react-next.vercel.app/api/auth/callback/google
-    
+    - environment variables added at vercel, including:
+        NEXTAUTH_URL=https://instagram-react-next.vercel.app
+        JWT_SECRET=<string of the developer's choosing>
+            note regarding JWT_SECRET: 
+                the following was added to [...nextauth].js:
+                    secret: process.env.JWT_SECRET,
+                    session: {
+                        strategy: "jwt",
+                    },
+
+    - at Google Cloud Console under APIs & Services/Credentials/OAuth 2.0 Client IDS/Web client
+        Authorized Javascript origins:
+        add https://instagram-react-next.vercel.app
+        Authorized redirect URIs:
+        add https://instagram-react-next.vercel.app/api/auth/callback/google
+        
 
