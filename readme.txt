@@ -15,7 +15,7 @@ deployed:
     https://instagram-react-next.vercel.app
 
 
-At deployment:
+at deployment:
 - environment variables added at vercel, including 
     NEXTAUTH_URL=https://instagram-react-next.vercel.app
 - at Google Cloud Console under APIs & Services/Credentials/OAuth 2.0 Client IDS/Web client
