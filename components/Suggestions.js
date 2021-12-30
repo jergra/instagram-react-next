@@ -12,9 +12,9 @@ function Suggestions() {
             const {results} = res.data
             //console.log("res.data.results:", res.data.results)
             //return results
-            //people = res.data.results
+            people = res.data.results
             setPeople(people)
-            console.log('people:', people)
+            //console.log('people:', people)
             //console.log('people[0].id:', people[0].id)
             //console.log('people[0].picture.thumbnail:', people[0].picture.thumbnail)
             //console.log('people[0].name.first.people[0].name.last:', 
