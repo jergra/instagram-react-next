@@ -1,20 +1,38 @@
 import {useState, useEffect} from 'react'
-import faker from 'faker'
+//import faker from 'faker'
 import Story from './Story'
 import { useSession } from 'next-auth/react';
+import axios from 'axios'
 
 function Stories() {
     const {data: session} = useSession()
-    const [suggestions, setSuggestions] = useState([])
+    //const [suggestions, setSuggestions] = useState([])
+    const [people, setPeople] = useState([])
     
     useEffect(() => {
-        const suggestions = [...Array(20)].map((_, i) => ({
-            ...faker.helpers.contextualCard(),
-            id: i,
-        }))
 
-        setSuggestions(suggestions)
-        //console.log('suggestions in Stories:', suggestions)
+        return axios.get('https://randomuser.me/api/?results=20')
+        .then((res) => {
+            const {results} = res.data
+            //console.log("res.data.results:", res.data.results)
+            //return results
+            people = res.data.results
+            setPeople(people)
+            //console.log('people:', people)
+            //console.log('people[0].id:', people[0].id)
+            //console.log('people[0].picture.thumbnail:', people[0].picture.thumbnail)
+            //console.log('people[0].name.first.people[0].name.last:', 
+            //    people[0].name.first + '.' + people[0].name.last)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+
+        // const suggestions = [...Array(20)].map((_, i) => ({
+        //     ...faker.helpers.contextualCard(),
+        //     id: i,
+        // }))
+        // setSuggestions(suggestions)
     }, [])
 
     return (
@@ -27,12 +45,12 @@ function Stories() {
                 /> 
             )}
             
-            {suggestions.map((profile) => (
+            {people.map((person, index) => (
                 <Story 
-                    key={profile.id} 
-                    //img={profile.avatar} 
-                    img='https://links.papareact.com/3ke'
-                    username={profile.username} 
+                    key={index} 
+                    img={person.picture.thumbnail} 
+                    //img='https://links.papareact.com/3ke'
+                    username={person.name.first + '.' + person.name.last} 
                 /> 
             ))} 
         </div>
@@ -40,3 +58,14 @@ function Stories() {
 }
 
 export default Stories
+
+
+
+// {suggestions.map((profile) => (
+//                 <Story 
+//                     key={profile.id} 
+//                     //img={profile.avatar} 
+//                     img='https://links.papareact.com/3ke'
+//                     username={profile.username} 
+//                 /> 
+//             ))}

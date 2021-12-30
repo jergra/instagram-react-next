@@ -14,6 +14,11 @@ start:
 deployed:
     https://instagram-react-next.vercel.app
 
+update:
+    git add . 
+    git commit -m 'message' 
+    git push
+
 
 at deployment:
     - environment variables added at vercel, including:
